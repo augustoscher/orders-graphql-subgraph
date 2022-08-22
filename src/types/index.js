@@ -1,7 +1,48 @@
-// const query = require('./queries')
-// const mutation = require('./mutations')
-const types = require('./types')
+const { gql } = require('apollo-server')
 
-const typeDefs = [types]
+const schema = gql`
+  extend schema
+    @link(
+      url: "https://specs.apollo.dev/federation/v2.0"
+      import: ["@key", "@shareable"]
+    )
 
-module.exports = typeDefs
+  type Query {
+    orders: [Order]
+    order(id: ID!): Order
+  }
+
+  type Mutation {
+    createOrder(order: OrderInput): Order
+  }
+
+  type Order @key(fields: "id") {
+    id: ID!
+    customerId: ID!
+    storeName: String
+    total: Number!
+    items: [OrdemItem]
+  }
+
+  type OrderItem {
+    id: ID!
+    productId: ID!
+    amount: Number!
+    price: Number!
+    total: Number!
+  }
+
+  input OrderInput {
+    customerId: ID!
+    storeName: String
+    total: Number!
+    items: [{
+      productId: ID!
+      amount: Number!
+      price: Number!
+      total: Number!
+    }]
+  }
+`
+
+module.exports = [schema]

@@ -1,5 +1,19 @@
-const orderResolver = require('./order')
+const orderResolver = {
+  Query: {
+    orders: async () => {
+      // get orders
+    },
+    order: async (_, { id }) => {
+      console.log(id)
+      // get order
+    }
+  },
+  Mutation: {
+    createOrder: async (_, { order }) => {
+      console.log(order)
+      // create order
+    }
+  }
+}
 
-const resolvers = [orderResolver]
-
-module.exports = resolvers
+module.exports = [orderResolver]
