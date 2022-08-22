@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid')
+
 const orders = []
 
 const orderResolver = {
@@ -7,20 +9,24 @@ const orderResolver = {
     }
   },
   Query: {
-    orders: async () => {
-      // get orders
+    orders: () => {
+      return orders
     },
-    order: async (_, { id }) => {
-      console.log(id)
-      // get order
+    order: (_, { id }) => {
+      return orders.find((order) => order.id === id)
     }
   },
   Mutation: {
-    createOrder: async (_, { order }) => {
-      console.log(order)
-      // create order
+    createOrder: (_, { order }) => {
+      const newOrder = {
+        ...order,
+        id: uuidv4()
+      }
+
+      orders.push(newOrder)
+      return newOrder
     }
   }
 }
 
-module.exports = [orderResolver]
+module.exports = orderResolver

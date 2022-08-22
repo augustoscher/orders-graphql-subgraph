@@ -25,29 +25,31 @@ const schema = gql`
     id: ID!
     customerId: ID!
     storeName: String
-    total: Number!
-    items: [OrdemItem]
+    total: Float!
+    items: [OrderItem]
   }
 
   type OrderItem {
     id: ID!
     productId: ID!
-    amount: Number!
-    price: Number!
-    total: Number!
+    amount: Float!
+    price: Float!
+    total: Float!
   }
 
   input OrderInput {
     customerId: ID!
     storeName: String
-    total: Number!
-    items: [{
-      productId: ID!
-      amount: Number!
-      price: Number!
-      total: Number!
-    }]
+    total: Float!
+    items: [OrderItemInput]
+  }
+
+  input OrderItemInput {
+    productId: ID!
+    amount: Float!
+    price: Float!
+    total: Float!
   }
 `
 
-module.exports = [schema]
+module.exports = schema
