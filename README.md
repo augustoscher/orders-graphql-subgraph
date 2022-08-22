@@ -13,7 +13,7 @@ yarn start
 ```
 
 ## Docs
-[GraphQL Principle](https://principledgraphql.com/integrity#1-one-graph).
+[GraphQL Principles](https://principledgraphql.com/integrity#1-one-graph).
 
 [Apollo Federation](https://www.apollographql.com/docs/federation/).
 
