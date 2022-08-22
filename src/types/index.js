@@ -16,6 +16,11 @@ const schema = gql`
     createOrder(order: OrderInput): Order
   }
 
+  type User @key(fields: "id") {
+    id: ID!
+    totalOrdersCreated: Int @shareable
+  }
+
   type Order @key(fields: "id") {
     id: ID!
     customerId: ID!

@@ -1,4 +1,11 @@
+const orders = []
+
 const orderResolver = {
+  Order: {
+    __resolveReference: (reference) => {
+      return orders.find((order) => order.id === reference.id)
+    }
+  },
   Query: {
     orders: async () => {
       // get orders
