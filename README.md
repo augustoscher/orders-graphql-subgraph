@@ -6,6 +6,12 @@ It's builded with [Apollo Federation](https://www.apollographql.com/docs/federat
 
 ## Running
 
+To run application, just type:
+
+```
+yarn start
+```
+
 ## Docs
 [GraphQL Principle](https://principledgraphql.com/integrity#1-one-graph).
 
