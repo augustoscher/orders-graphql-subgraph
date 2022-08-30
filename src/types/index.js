@@ -16,8 +16,8 @@ const schema = gql`
     createOrder(order: OrderInput): Order
   }
 
-  type User @key(fields: "id") {
-    id: ID!
+  type User @key(fields: "email") {
+    email: ID!
     totalOrdersCreated: Int @shareable
   }
 
