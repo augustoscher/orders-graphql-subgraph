@@ -3,9 +3,15 @@ const { v4: uuidv4 } = require('uuid')
 const orders = []
 
 const orderResolver = {
-  Order: {
-    __resolveReference: (reference) => {
-      return orders.find((order) => order.id === reference.id)
+  Order: {},
+  OrderItem: {
+    product(orderItem) {
+      return {
+        // Allow data fetch from product subgraph.
+        // This will trigger __resolveReference resolver in Product type in products subgraph
+        __typename: 'Product',
+        id: orderItem.productId
+      }
     }
   },
   Query: {

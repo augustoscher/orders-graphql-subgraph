@@ -16,12 +16,7 @@ const schema = gql`
     createOrder(order: OrderInput): Order
   }
 
-  type User @key(fields: "email") {
-    email: ID!
-    totalOrdersCreated: Int @shareable
-  }
-
-  type Order @key(fields: "id") {
+  type Order {
     id: ID!
     customerId: ID!
     storeName: String
@@ -29,9 +24,13 @@ const schema = gql`
     items: [OrderItem]
   }
 
+  type Product @key(fields: "id") {
+    id: ID!
+  }
+
   type OrderItem {
     id: ID!
-    productId: ID!
+    product: Product!
     amount: Float!
     price: Float!
     total: Float!
